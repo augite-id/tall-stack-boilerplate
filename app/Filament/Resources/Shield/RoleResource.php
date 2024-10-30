@@ -211,7 +211,7 @@ class RoleResource extends Resource implements HasShieldPermissions
                 );
 
                 return Forms\Components\Section::make($sectionLabel)
-                    ->description(fn () => new HtmlString('<span style="word-break: break-word;">'.Utils::showModelPath($entity['fqcn']).'</span>'))
+                    ->description(fn () => new HtmlString('<span style="word-break: break-word;">' . Utils::showModelPath($entity['fqcn']) . '</span>'))
                     ->compact()
                     ->schema([
                         static::getCheckBoxListComponentForResource($entity),
@@ -233,7 +233,7 @@ class RoleResource extends Resource implements HasShieldPermissions
     {
         return collect(Utils::getResourcePermissionPrefixes($entity['fqcn']))
             ->flatMap(function ($permission) use ($entity) {
-                $name = $permission.'_'.$entity['resource'];
+                $name = $permission . '_' . $entity['resource'];
                 $label = static::shield()->hasLocalizedPermissionLabels()
                     ? FilamentShield::getLocalizedResourcePermissionLabel($permission)
                     : $name;
